@@ -95,7 +95,7 @@ function Get-GitBranch($gitDir = $(Get-GitDirectory), [Diagnostics.Stopwatch]$sw
 }
 
 function Get-GitStatus($gitDir = (Get-GitDirectory)) {
-    $settings = $Global:GitPromptSettings
+    $settings = $Global:VcsStatusSettings
     $enabled = (-not $settings) -or $settings.EnablePromptStatus
     if ($enabled -and $gitDir)
     {
@@ -196,7 +196,7 @@ function Get-GitStatus($gitDir = (Get-GitDirectory)) {
 function InDisabledRepository {
     $currentLocation = Get-Location
 
-    foreach ($repo in $Global:GitPromptSettings.RepositoriesInWhichToDisableFileStatus)
+    foreach ($repo in $Global:VcsStatusSettings.RepositoriesInWhichToDisableFileStatus)
     {
         if ($currentLocation -like "$repo*") {
             return $true
