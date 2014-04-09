@@ -79,7 +79,7 @@ param(
 )
 
     if($global:VcsStatusSettings) {
-        ## Sync the Background Colors:
+        ## Sync the Background Colors: 
         ## If the DefaultBackgroundColor is changed
         if($PSBoundParameters.ContainsKey("DefaultBackgroundColor") -and ($global:VcsStatusSettings.DefaultBackgroundColor -ne $DefaultBackgroundColor)) {
             ## Any other background colors
@@ -138,7 +138,7 @@ param(
             DescribeStyle = $DescribeStyle
             RepositoriesInWhichToDisableFileStatus = $RepositoriesInWhichToDisableFileStatus
 
-            #Before prompt
+            #Before prompt        
             BeforeText = $BeforeText
             BeforeForegroundColor = $BeforeForegroundColor
             BeforeBackgroundColor = $BeforeBackgroundColor
@@ -160,17 +160,17 @@ param(
 
             # WorkingColors
             AddedStatusPrefix = $AddedStatusPrefix
-            AddedLocalForegroundColor    = $AddedLocalForegroundColor
-            AddedLocalBackgroundColor    = $AddedLocalBackgroundColor
-
+            AddedLocalForegroundColor    = $AddedLocalForegroundColor   
+            AddedLocalBackgroundColor    = $AddedLocalBackgroundColor   
+            
             ModifiedStatusPrefix = $ModifiedStatusPrefix
             ModifiedLocalForegroundColor = $ModifiedLocalForegroundColor
             ModifiedLocalBackgroundColor = $ModifiedLocalBackgroundColor
-
+            
             DeletedStatusPrefix = $DeletedStatusPrefix
-            DeletedLocalForegroundColor  = $DeletedLocalForegroundColor
-            DeletedLocalBackgroundColor  = $DeletedLocalBackgroundColor
-
+            DeletedLocalForegroundColor  = $DeletedLocalForegroundColor 
+            DeletedLocalBackgroundColor  = $DeletedLocalBackgroundColor 
+            
             UntrackedStatusPrefix = $UntrackedStatusPrefix
             UntrackedLocalForegroundColor = $UntrackedLocalForegroundColor
             UntrackedLocalBackgroundColor = $UntrackedLocalBackgroundColor
