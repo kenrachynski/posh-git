@@ -130,6 +130,7 @@ param(
 
     } else {
         $global:VcsStatusSettings = New-Object PSObject -Property @{
+            DefaultForegroundColor = $DefaultForegroundColor
             DefaultBackgroundColor = $DefaultBackgroundColor
             # Retreival settings
             EnablePromptStatus = $EnablePromptStatus
