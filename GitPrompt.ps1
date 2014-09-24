@@ -12,6 +12,9 @@ param(
     [Switch]$ShowStatusWhenZero        = $true,
     [String[]]$RepositoriesInWhichToDisableFileStatus = @( ), # Array of repository paths
 
+    [ValidateSet("contains","branch","describe","default")]
+    [String]$DescribeStyle             = "default",
+
     #Before prompt
     [String]$BeforeText                      = ' [',
     [ConsoleColor]$BeforeForegroundColor     = $([ConsoleColor]::Yellow),
@@ -58,16 +61,9 @@ param(
     [ConsoleColor]$DelimForegroundColor      = $([ConsoleColor]::Yellow),
     [ConsoleColor]$DelimBackgroundColor      = $DefaultBackgroundColor,
 
-<<<<<<< HEAD
-    EnablePromptStatus        = !$Global:GitMissing
-    EnableFileStatus          = $true
-    RepositoriesInWhichToDisableFileStatus = @( ) # Array of repository paths
-    DescribeStyle             = ''
-=======
     [String]$UnmergedStatusPrefix                    = ' ?',
     [ConsoleColor]$UnmergedLocalBackgroundColor   = $([ConsoleColor]::DarkRed),
     [ConsoleColor]$UnmergedLocalForegroundColor   = $DefaultBackgroundColor,
->>>>>>> Merge settings with Posh-Hg because I'm tired of having dueling sets
 
     [String]$BeforeIndexText                 = "",
     [ConsoleColor]$BeforeIndexForegroundColor= $([ConsoleColor]::DarkGreen),
@@ -83,7 +79,7 @@ param(
 )
 
     if($global:VcsStatusSettings) {
-        ## Sync the Background Colors: 
+        ## Sync the Background Colors:
         ## If the DefaultBackgroundColor is changed
         if($PSBoundParameters.ContainsKey("DefaultBackgroundColor") -and ($global:VcsStatusSettings.DefaultBackgroundColor -ne $DefaultBackgroundColor)) {
             ## Any other background colors
@@ -124,6 +120,8 @@ param(
 
             $global:VcsStatusSettings | Add-Member NoteProperty ShowStatusWhenZero $ShowStatusWhenZero -Force
 
+            $global:VcsStatusSettings | Add-Member NoteProperty DescribeStyle $DescribeStyle -Force
+
             $global:VcsStatusSettings | Add-Member NoteProperty AutoRefreshIndex $AutoRefreshIndex -Force
 
             $global:VcsStatusSettings | Add-Member NoteProperty EnableWindowTitle $EnableWindowTitle -Force
@@ -136,9 +134,10 @@ param(
             # Retreival settings
             EnablePromptStatus = $EnablePromptStatus
             EnableFileStatus = $EnableFileStatus
-            RepositoriesInWhichToDisableFileStatus = $RepositoriesInWhichToDisableFileStatus       
+            DescribeStyle = $DescribeStyle
+            RepositoriesInWhichToDisableFileStatus = $RepositoriesInWhichToDisableFileStatus
 
-            #Before prompt        
+            #Before prompt
             BeforeText = $BeforeText
             BeforeForegroundColor = $BeforeForegroundColor
             BeforeBackgroundColor = $BeforeBackgroundColor
@@ -160,17 +159,17 @@ param(
 
             # WorkingColors
             AddedStatusPrefix = $AddedStatusPrefix
-            AddedLocalForegroundColor    = $AddedLocalForegroundColor   
-            AddedLocalBackgroundColor    = $AddedLocalBackgroundColor   
-            
+            AddedLocalForegroundColor    = $AddedLocalForegroundColor
+            AddedLocalBackgroundColor    = $AddedLocalBackgroundColor
+
             ModifiedStatusPrefix = $ModifiedStatusPrefix
             ModifiedLocalForegroundColor = $ModifiedLocalForegroundColor
             ModifiedLocalBackgroundColor = $ModifiedLocalBackgroundColor
-            
+
             DeletedStatusPrefix = $DeletedStatusPrefix
-            DeletedLocalForegroundColor  = $DeletedLocalForegroundColor 
-            DeletedLocalBackgroundColor  = $DeletedLocalBackgroundColor 
-            
+            DeletedLocalForegroundColor  = $DeletedLocalForegroundColor
+            DeletedLocalBackgroundColor  = $DeletedLocalBackgroundColor
+
             UntrackedStatusPrefix = $UntrackedStatusPrefix
             UntrackedLocalForegroundColor = $UntrackedLocalForegroundColor
             UntrackedLocalBackgroundColor = $UntrackedLocalBackgroundColor
